@@ -6,16 +6,15 @@ import pickle
 import pandas as pd
 
 # Create flask app
-flask_app = Flask(__name__)
+app = Flask(__name__)
 model = pickle.load(open("model.pkl", "rb"))
 
-
-@flask_app.route("/")
+app.route("/")
 def home():
     return render_template("index.html")
 
 
-@flask_app.route("/predict", methods=["POST"])
+app.route("/predict", methods=["POST"])
 def predict():
     # Get all form values
     input_data = {
